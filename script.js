@@ -167,9 +167,9 @@ const sendScore = () => {
       score: currentGameState.score,
     };
 
-    console.log(data);
-
     scoreStatistic.record.scores.push(scoreObject);
+
+    console.log(scoreStatistic);
 
     patchData(URL, scoreStatistic.record);
   }
@@ -224,6 +224,9 @@ const finishGame = () => {
       eTopScoreTable.classList.remove("d-none");
       eNameInput.classList.remove("d-none");
       eSendScoreButton.classList.remove("d-none");
+    })
+    .catch(() => {
+      scoreStatistic = null;
     })
     .finally(() => {
       eTopScoreLoader.classList.add("d-none");
@@ -435,5 +438,5 @@ const startGame = () => {
 eStartButton.onclick = startGame;
 eSendScoreButton.onclick = () => {
   unMountScene();
-  sendScore;
+  sendScore();
 };

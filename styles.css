@@ -200,13 +200,13 @@ body {
   position: absolute;
   width: 45%;
   height: 50%;
-  top: 15%;
+  top: 11%;
   right: 18%;
   padding: 78px;
   filter: drop-shadow(15px 30px 15px rgba(70, 0, 0, 0.7));
   z-index: 1000;
   border-radius: 132px;
-  border: 4px solid rgb(0, 0, 0);
+  outline: 4px solid rgb(0, 0, 0);
   background: radial-gradient(
       circle,
       rgba(204, 123, 0, 0.351) 50%,
@@ -654,19 +654,19 @@ body {
 
 @keyframes game-show {
   0% {
-    top: 15%;
+    top: 11%;
     right: -150%;
     transform: rotate(7deg);
   }
 
   75% {
-    top: 17%;
+    top: 15%;
     right: 35%;
     transform: rotate(-15deg);
   }
 
   100% {
-    top: 15%;
+    top: 11%;
     right: 18%;
     transform: rotate(0);
   }
