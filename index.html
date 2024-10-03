@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <title>My test page</title>
+    <link rel="stylesheet" href="styles.css"></link>
+  </head>
+  <body>
+    <div class="app__container">
+        <div class="background"></div>
+        <img class="background-top main-decor" src="assets/image/m_dec_05.svg"></img>
+         <img class="castle game-decor d-none" src="assets/image/p_dec_01.svg"></img>
+        <img class="pumpkin main-decor" src="assets/image/m_dec_04.svg"></img>
+        <img class="background-bottom main-decor" src="assets/image/m_dec_07.svg"></img>
+        <div id="startButton" class="d-flex justify-center align-center start-button__container">
+            <img class="background" src="assets/image/m_dec_03.svg"></img>
+            <span class="label">Начать игру</span>
+        </div>
+        <img class="game__witch game-decor d-none" src="assets/image/p_dec_03.svg"></img>
+        <div id="statsWrapper" class="game__stats d-none">
+            <span id="timer" class="timer label"></span>
+            <span id="score" class="score label"></span>
+        </div>
+        <div id="gameWrapper" class="game__wrapper d-none">
+            <img class="game__hand" src="assets/image/p_dec_02.svg"></img>
+            <div class="d-flex justify-center align-center scores">
+                <input id="name" class="d-none name__field" placeholder="Введите имя"></input>
+                <div id="sendScore" class="label d-none send">Отправить результат!</div>
+            </div>
+            <div id="gameContainer" class="game__container">
+            </div>
+        </div>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>
