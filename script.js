@@ -33,13 +33,25 @@ const GAME_LEVELS = {
 const CHARACTER_MESSAGES = {
   0: "Зачем?",
   1: "ТЫ ЧТО, ДУРАК ЧТО ЛИ?",
-  2: "Дверь мне сделал, б#$",
+  2: "А я думала сова...",
   3: "Ты не пройдёшь!",
+  4: "Камеру вырубай",
+  5: "Ты кто такой, чтобы это сделать, с$%&",
+  6: "Сказочный д&%:?б",
+  7: "Ловко ты это придумал",
+  8: "Вы кто такие? Я вас не звал...",
+  9: "Ты втираешь мне какую-то дичь",
+  10: "Ну нажал, и нажал - чё бубнить-то?",
+  11: "Е;%?* ты лох",
+  12: "На пенёк сел - косарь должен",
+  13: "Ничего не понял, но очень интересно",
+  14: "Дурак?",
+  14: "Э",
 };
 
 const GAME_TIME = 30000;
 const TIME_BONUS = 1000;
-const URL = "https://json.extendsclass.com/bin/8fa985629adc";
+const URL = "https://api.jsonbin.io/v3/b/66fe2f42ad19ca34f8b1e3fe";
 
 let currentGameState = {
   started: null,
@@ -52,6 +64,8 @@ let currentGameState = {
   level: "easy",
 };
 
+let scoreStatistic = {};
+
 let eTimerValueUpdateInterval = null;
 
 const eGameContainer = document.getElementById("gameContainer");
@@ -62,18 +76,34 @@ const eStartButton = document.getElementById("startButton");
 const eMainDecor = document.getElementsByClassName("main-decor");
 const eGameDecor = document.getElementsByClassName("game-decor");
 const eStatsWrapper = document.getElementById("statsWrapper");
+const eTopScoreLoader = document.getElementById("loader");
+const eTopScoreTable = document.getElementById("topScoreTable");
 const eNameInput = document.getElementById("name");
 const eSendScoreButton = document.getElementById("sendScore");
 
 async function patchData(url = "", data = {}) {
   // Default options are marked with *
   const response = await fetch(url, {
-    method: "PATCH", // *GET, POST, PUT, DELETE, etc.
+    method: "PUT", // *GET, POST, PUT, DELETE, etc.
     headers: {
-      "Security-key": "1337",
-      "Content-Type": "application/json-patch+json",
+      "Content-Type": "application/json",
+      "X-Access-Key":
+        "$2a$10$kpVUFEVLeP6fZb1Xplr3TuVOjzOVU6zuYoayKoYEAj3CXohv8d5bq",
     },
     body: JSON.stringify(data), // body data type must match "Content-Type" header
+  });
+  return await response.json(); // parses JSON response into native JavaScript objects
+}
+
+async function getData(url = "") {
+  // Default options are marked with *
+  const response = await fetch(url, {
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+    headers: {
+      "Content-Type": "application/json",
+      "X-Access-Key":
+        "$2a$10$kpVUFEVLeP6fZb1Xplr3TuVOjzOVU6zuYoayKoYEAj3CXohv8d5bq",
+    },
   });
   return await response.json(); // parses JSON response into native JavaScript objects
 }
@@ -110,23 +140,10 @@ const openMenu = () => {
   eStartButton.classList.remove("d-none");
 };
 
-const sendScore = () => {
+const unMountScene = () => {
   eGameWrapper.classList.add("hide");
   eGameDecor[0].classList.add("hide");
   eStatsWrapper.classList.add("hide");
-
-  const scoreObject = [
-    {
-      op: "add",
-      path: `/scores/${new Date().getTime()}`,
-      value: {
-        name: eNameInput.value,
-        score: currentGameState.score,
-      },
-    },
-  ];
-
-  patchData(URL, scoreObject);
 
   setTimeout(() => {
     eGameWrapper.classList.add("d-none");
@@ -136,10 +153,26 @@ const sendScore = () => {
     eGameDecor[1].classList.add("d-none");
     eStatsWrapper.classList.add("d-none");
     eStatsWrapper.classList.remove("hide");
+    eTopScoreTable.classList.add("d-none");
     eNameInput.classList.add("d-none");
     eSendScoreButton.classList.add("d-none");
     openMenu();
   }, 1000);
+};
+
+const sendScore = () => {
+  if (scoreStatistic) {
+    const scoreObject = {
+      name: eNameInput.value,
+      score: currentGameState.score,
+    };
+
+    console.log(data);
+
+    scoreStatistic.record.scores.push(scoreObject);
+
+    patchData(URL, scoreStatistic.record);
+  }
 };
 
 const finishGame = () => {
@@ -149,9 +182,52 @@ const finishGame = () => {
   clearInterval(currentGameState.charactersBirth);
   currentGameState.characters = [];
   currentGameState.finished = new Date();
-  eNameInput.classList.remove("d-none");
-  eSendScoreButton.classList.remove("d-none");
+
   console.log("game finished");
+
+  function createDataRow(index, data) {
+    return `
+      <tr>
+        <td>${index}</td>
+        <td>${data?.name || "Без имени"}</td>
+        <td>${data?.score || 0}</td>
+      </tr>
+    `;
+  }
+
+  eTopScoreLoader.classList.remove("d-none");
+
+  getData(URL)
+    .then((response) => {
+      scoreStatistic = response;
+      const sortedScoreStatistic = scoreStatistic.record.scores.sort(
+        (a, b) => b.score - a.score
+      );
+
+      const eTableBody = eTopScoreTable.getElementsByTagName("tbody")[0];
+      while (eTableBody.firstChild) {
+        eTableBody.firstChild.remove();
+      }
+      eTableBody.insertAdjacentHTML(
+        "beforeend",
+        createDataRow(1, sortedScoreStatistic[0])
+      );
+      eTableBody.insertAdjacentHTML(
+        "beforeend",
+        createDataRow(2, sortedScoreStatistic[1])
+      );
+      eTableBody.insertAdjacentHTML(
+        "beforeend",
+        createDataRow(3, sortedScoreStatistic[2])
+      );
+
+      eTopScoreTable.classList.remove("d-none");
+      eNameInput.classList.remove("d-none");
+      eSendScoreButton.classList.remove("d-none");
+    })
+    .finally(() => {
+      eTopScoreLoader.classList.add("d-none");
+    });
 };
 
 const setETimerValueUpdateHandler = () => {
@@ -186,7 +262,7 @@ const createNewCharacterData = () => {
       }.png`;
       result.moving = MOVE_TYPES[Math.round(Math.random() * (3 - 0)) + 0];
       result.speech =
-        CHARACTER_MESSAGES[Math.round(Math.random() * (3 - 0)) + 0];
+        CHARACTER_MESSAGES[Math.round(Math.random() * (15 - 0)) + 0];
       break;
     case MODEL_TYPES[3]:
       result.sprite = `assets/image/s_time_0${
@@ -356,4 +432,7 @@ const startGame = () => {
 };
 
 eStartButton.onclick = startGame;
-eSendScoreButton.onclick = sendScore;
+eSendScoreButton.onclick = () => {
+  unMountScene();
+  sendScore;
+};

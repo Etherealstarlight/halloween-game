@@ -2,7 +2,8 @@
 <html lang="en-US">
   <head>
     <meta charset="utf-8" />
-    <title>My test page</title>
+    <title>Helloween party</title>
+    <link rel="icon" type="image/x-icon" href="assets/image/favicon.ico"></link>
     <link rel="stylesheet" href="styles.css"></link>
   </head>
   <body>
@@ -15,6 +16,7 @@
         <div id="startButton" class="d-flex justify-center align-center start-button__container">
             <img class="background" src="assets/image/m_dec_03.svg"></img>
             <span class="label">Начать игру</span>
+            <span class="label hint">Топ-3 победителя игры получат призы!</span>
         </div>
         <img class="game__witch game-decor d-none" src="assets/image/p_dec_03.svg"></img>
         <div id="statsWrapper" class="game__stats d-none">
@@ -24,6 +26,20 @@
         <div id="gameWrapper" class="game__wrapper d-none">
             <img class="game__hand" src="assets/image/p_dec_02.svg"></img>
             <div class="d-flex justify-center align-center scores">
+                <img id="loader" class="d-none loader" src="assets/image/s_load.svg"></img>
+                <div class="top-score__table__container">
+                  <table id="topScoreTable" class="label d-none top-score__table">
+                    <thead>
+                      <tr>
+                        <th>№</th>
+                        <th>Имя</th>
+                        <th>Счёт</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                  </table>
+                </div>
                 <input id="name" class="d-none name__field" placeholder="Введите имя"></input>
                 <div id="sendScore" class="label d-none send">Отправить результат!</div>
             </div>
