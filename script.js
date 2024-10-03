@@ -261,7 +261,7 @@ const createNewCharacterData = () => {
       break;
     case MODEL_TYPES[2]:
       result.sprite = `assets/image/s_character_0${
-        Math.round(Math.random() * (5 - 1)) + 1
+        Math.round(Math.random() * (5 - 0)) + 0
       }.png`;
       result.moving = MOVE_TYPES[Math.round(Math.random() * (3 - 0)) + 0];
       result.speech =
