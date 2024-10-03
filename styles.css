@@ -10,7 +10,7 @@
 }
 
 .label {
-  font-family: "Jolly Lodger";
+  font-family: "Jolly Lodger" !important;
   font-size: 3rem;
 }
 
@@ -43,6 +43,7 @@ body {
   width: 100vw;
   background: #dc8201;
   overflow: hidden;
+  font-family: etc;
 }
 
 .app__container {
@@ -287,7 +288,7 @@ body {
   width: 35%;
   height: 15%;
   background: rgba(255, 255, 255, 0.7);
-  font-family: "Jolly Lodger";
+  font-family: "Jolly Lodger" !important;
   font-size: 5vw;
   border-radius: 16px;
   border: 4px solid rgba(40, 0, 58, 0.7);
