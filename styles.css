@@ -11,7 +11,7 @@
 
 .label {
   font-family: "Jolly Lodger" !important;
-  font-size: 7rem;
+  font-size: 3rem;
 }
 
 .w-100 {
@@ -255,11 +255,16 @@ body {
 }
 
 .character {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
   filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.3));
 }
 
 .character > .message {
-  font-size: 3rem;
+  font-size: 1.5rem;
   animation: fadein 0.3s ease;
 }
 
@@ -338,7 +343,7 @@ body {
 }
 
 .top-score__table {
-  font-size: 3rem;
+  font-size: 1.5rem;
   width: 100%;
   background: rgba(255, 123, 0, 0.3);
   border-radius: 78px;

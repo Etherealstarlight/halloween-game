@@ -286,6 +286,7 @@ const createNewCharacterElement = (newCharacterData) => {
   const img = document.createElement("img");
   img.style.width = "100%";
   img.src = newCharacterData.sprite;
+  img.draggable = false;
 
   e.classList.add("character");
   e.classList.add(newCharacterData.moving);
