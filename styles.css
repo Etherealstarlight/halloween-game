@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: "Jolly Lodger";
-  src: url(../../assets/fonts/jolly-lodger-cyrillic.otf);
+  src: url(../assets/fonts/jolly-lodger-cyrillic.otf) format("truetype");
 }
 
 .label {
@@ -43,7 +43,6 @@ body {
   width: 100vw;
   background: #dc8201;
   overflow: hidden;
-  font-family: etc;
 }
 
 .app__container {
