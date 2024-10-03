@@ -11,7 +11,7 @@
 
 .label {
   font-family: "Jolly Lodger" !important;
-  font-size: 3rem;
+  font-size: 7rem;
 }
 
 .w-100 {
@@ -259,7 +259,7 @@ body {
 }
 
 .character > .message {
-  font-size: 1.5rem;
+  font-size: 3rem;
   animation: fadein 0.3s ease;
 }
 
@@ -338,7 +338,7 @@ body {
 }
 
 .top-score__table {
-  font-size: 1.5rem;
+  font-size: 3rem;
   width: 100%;
   background: rgba(255, 123, 0, 0.3);
   border-radius: 78px;
