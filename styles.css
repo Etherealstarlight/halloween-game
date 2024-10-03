@@ -6,7 +6,7 @@
 
 @font-face {
   font-family: "Jolly Lodger";
-  src: url(../assets/fonts/jolly-lodger-cyrillic.otf) format("truetype");
+  src: url(assets/fonts/jolly-lodger-cyrillic.otf) format("truetype");
 }
 
 .label {
