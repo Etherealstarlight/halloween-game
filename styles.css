@@ -158,7 +158,7 @@ body {
 
 .start-button__container > .hint {
   position: absolute;
-  bottom: -50px;
+  bottom: -100px;
   left: 0;
   text-align: center;
   width: 100%;
@@ -264,7 +264,7 @@ body {
 }
 
 .character > .message {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   animation: fadein 0.3s ease;
 }
 
@@ -343,7 +343,7 @@ body {
 }
 
 .top-score__table {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   width: 100%;
   background: rgba(255, 123, 0, 0.3);
   border-radius: 78px;
