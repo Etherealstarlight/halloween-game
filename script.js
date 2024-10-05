@@ -105,6 +105,8 @@ const eAudioButtonCross = document.getElementById("audioButtonCross");
 
 const aBackgroundMusic = document.getElementById("backgroundMusic");
 
+aBackgroundMusic.volume = 0.7;
+
 async function patchData(url = "", data = {}) {
   // Default options are marked with *
   const response = await fetch(url, {
@@ -211,8 +213,8 @@ const finishGame = () => {
 
   const musicShutdown = setInterval(() => {
     aBackgroundMusic.volume += 0.1;
-    if (aBackgroundMusic.volume >= 0.9) {
-      aBackgroundMusic.volume = 1;
+    if (aBackgroundMusic.volume >= 0.7) {
+      aBackgroundMusic.volume = 0.7;
       clearInterval(musicShutdown);
     }
   }, 100);
