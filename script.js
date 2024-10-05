@@ -1,5 +1,24 @@
 console.log("game");
 
+// Audio.prototype.play = (function (play) {
+//   return function () {
+//     var audio = this,
+//       args = arguments,
+//       promise = play.apply(audio, args);
+//     if (promise !== undefined) {
+//       promise.catch((_) => {
+//         // Autoplay was prevented. This is optional, but add a button to start playing.
+//         var el = document.createElement("button");
+//         el.innerHTML = "Play";
+//         el.addEventListener("click", function () {
+//           play.apply(audio, args);
+//         });
+//         this.parentNode.insertBefore(el, this.nextSibling);
+//       });
+//     }
+//   };
+// })(Audio.prototype.play);
+
 class GameObject {
   constructor(data) {
     this.id = data.id;
@@ -7,6 +26,7 @@ class GameObject {
     this.moving = data.moving;
     this.sprite = data.sprite;
     this.speech = data.speech;
+    this.sound = data.sound;
   }
 }
 
@@ -80,6 +100,10 @@ const eTopScoreLoader = document.getElementById("loader");
 const eTopScoreTable = document.getElementById("topScoreTable");
 const eNameInput = document.getElementById("name");
 const eSendScoreButton = document.getElementById("sendScore");
+const eAudioButton = document.getElementById("audioButton");
+const eAudioButtonCross = document.getElementById("audioButtonCross");
+
+const aBackgroundMusic = document.getElementById("backgroundMusic");
 
 async function patchData(url = "", data = {}) {
   // Default options are marked with *
@@ -185,6 +209,14 @@ const finishGame = () => {
 
   console.log("game finished");
 
+  const musicShutdown = setInterval(() => {
+    aBackgroundMusic.volume += 0.1;
+    if (aBackgroundMusic.volume >= 0.9) {
+      aBackgroundMusic.volume = 1;
+      clearInterval(musicShutdown);
+    }
+  }, 100);
+
   function createDataRow(index, data) {
     return `
       <tr>
@@ -258,6 +290,7 @@ const createNewCharacterData = () => {
         Math.round(Math.random() * (5 - 1)) + 1
       }.svg`;
       result.moving = MOVE_TYPES[Math.round(Math.random() * (3 - 0)) + 0];
+      result.sound = new Audio("assets/sound/click_01.mp3");
       break;
     case MODEL_TYPES[2]:
       result.sprite = `assets/image/s_character_0${
@@ -266,12 +299,14 @@ const createNewCharacterData = () => {
       result.moving = MOVE_TYPES[Math.round(Math.random() * (3 - 0)) + 0];
       result.speech =
         CHARACTER_MESSAGES[Math.round(Math.random() * (15 - 0)) + 0];
+      result.sound = new Audio("assets/sound/click_02.mp3");
       break;
     case MODEL_TYPES[3]:
       result.sprite = `assets/image/s_time_0${
         Math.round(Math.random() * (5 - 1)) + 1
       }.svg`;
       result.moving = MOVE_TYPES[Math.round(Math.random() * (1 - 0)) + 0];
+      result.sound = new Audio("assets/sound/click_01.mp3");
       break;
   }
 
@@ -376,6 +411,7 @@ const setNewGameCharacter = () => {
 
   eCharacter.onclick = () => {
     changeScore(newCharacter);
+    newCharacter.sound.play();
     removeCharacter(true);
     clearTimeout(characterLive);
   };
@@ -386,6 +422,11 @@ const closeMenu = () => {
   eMainDecor[1].classList.add("hide");
   eMainDecor[2].classList.add("hide");
   eStartButton.classList.add("d-none");
+
+  const musicShutdown = setInterval(() => {
+    aBackgroundMusic.volume -= 0.1;
+    if (aBackgroundMusic.volume <= 0.3) clearInterval(musicShutdown);
+  }, 100);
 
   setTimeout(() => {
     eMainDecor[0].classList.add("d-none");
@@ -439,4 +480,13 @@ eStartButton.onclick = startGame;
 eSendScoreButton.onclick = () => {
   unMountScene();
   sendScore();
+};
+eAudioButton.onclick = () => {
+  if (eAudioButtonCross.classList.contains("d-none")) {
+    eAudioButtonCross.classList.remove("d-none");
+    aBackgroundMusic.pause();
+  } else {
+    eAudioButtonCross.classList.add("d-none");
+    aBackgroundMusic.play();
+  }
 };

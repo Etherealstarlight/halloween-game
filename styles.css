@@ -74,6 +74,35 @@ body {
   z-index: -1;
 }
 
+.audio-button__wrapper {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  width: 7%;
+  animation: fadein 1s ease;
+  z-index: 1000;
+  filter: drop-shadow(0px 0px 1px rgba(228, 110, 0, 0.7))
+    drop-shadow(15px 15px 5px rgba(70, 0, 0, 0.7));
+}
+
+.audio-button__wrapper:hover {
+  cursor: pointer;
+  transform: scale(1.125);
+}
+
+.audio-button__wrapper > .cross {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 10%;
+  width: 100%;
+  background: rgba(192, 7, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 20px;
+  transform: rotate(35deg);
+  animation: audio-button-cross 1s ease;
+}
+
 .background-top {
   position: absolute;
   top: -1%;
@@ -731,5 +760,15 @@ body {
 
   to {
     transform: rotate(-360deg);
+  }
+}
+
+@keyframes audio-button-cross {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 100%;
   }
 }
