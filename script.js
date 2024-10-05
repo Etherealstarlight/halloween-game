@@ -105,7 +105,7 @@ const eAudioButtonCross = document.getElementById("audioButtonCross");
 
 const aBackgroundMusic = document.getElementById("backgroundMusic");
 
-aBackgroundMusic.volume = 0.7;
+aBackgroundMusic.volume = 0.35;
 
 async function patchData(url = "", data = {}) {
   // Default options are marked with *
@@ -213,8 +213,8 @@ const finishGame = () => {
 
   const musicShutdown = setInterval(() => {
     aBackgroundMusic.volume += 0.1;
-    if (aBackgroundMusic.volume >= 0.7) {
-      aBackgroundMusic.volume = 0.7;
+    if (aBackgroundMusic.volume >= 0.35) {
+      aBackgroundMusic.volume = 0.35;
       clearInterval(musicShutdown);
     }
   }, 100);
@@ -427,7 +427,10 @@ const closeMenu = () => {
 
   const musicShutdown = setInterval(() => {
     aBackgroundMusic.volume -= 0.1;
-    if (aBackgroundMusic.volume <= 0.3) clearInterval(musicShutdown);
+    if (aBackgroundMusic.volume <= 0.15) {
+      aBackgroundMusic.volume = 0.15;
+      clearInterval(musicShutdown);
+    }
   }, 100);
 
   setTimeout(() => {
