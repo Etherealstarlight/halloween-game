@@ -1,0 +1,149 @@
+@keyframes castle-up {
+  0% {
+    bottom: -150%;
+    left: -5%;
+  }
+
+  50% {
+    bottom: -5%;
+    left: 5%;
+  }
+
+  100% {
+    bottom: -10%;
+    left: 5%;
+  }
+}
+
+@keyframes castle-swing {
+  0% {
+    bottom: -10%;
+    left: 5%;
+    transform: rotate(0);
+  }
+
+  50% {
+    bottom: -8%;
+    left: 3%;
+    transform: rotate(-3deg);
+  }
+
+  100% {
+    bottom: -10%;
+    left: 5%;
+    transform: rotate(0);
+  }
+}
+
+@keyframes castle-down {
+  0% {
+    bottom: -10%;
+    left: 5%;
+  }
+
+  50% {
+    bottom: -5%;
+    left: 5%;
+  }
+
+  100% {
+    bottom: -150%;
+    left: -5%;
+  }
+}
+
+@keyframes scale-up {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.5);
+  }
+}
+
+@keyframes scale-down {
+  from {
+    transform: scale(1.5);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes x-moving {
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(15%);
+  }
+
+  50% {
+    transform: translateX(0);
+  }
+
+  75% {
+    transform: translateX(-15%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes y-moving {
+  0% {
+    transform: translateY(0);
+  }
+
+  25% {
+    transform: translateY(15%);
+  }
+
+  50% {
+    transform: translateY(0);
+  }
+
+  75% {
+    transform: translateY(-15%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes game-hide {
+  0% {
+    top: 15%;
+    right: 18%;
+    transform: rotate(7deg);
+  }
+
+  15% {
+    top: 17%;
+    right: 35%;
+    transform: rotate(-15deg);
+  }
+
+  100% {
+    top: 15%;
+    right: -150%;
+    transform: rotate(0);
+  }
+}
+
+@keyframes game-witch {
+  from {
+    top: 35%;
+    right: -35%;
+  }
+
+  to {
+    top: 35%;
+    right: 135%;
+  }
+}

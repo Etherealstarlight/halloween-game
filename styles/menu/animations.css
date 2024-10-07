@@ -1,0 +1,103 @@
+@keyframes pumpkin-up {
+  0% {
+    bottom: -150%;
+    right: -5%;
+  }
+
+  50% {
+    bottom: -10%;
+    right: 5%;
+  }
+
+  100% {
+    bottom: -15%;
+    right: 5%;
+  }
+}
+
+@keyframes pumpkin-down {
+  0% {
+    bottom: -15%;
+    right: 5%;
+  }
+
+  50% {
+    bottom: -10%;
+    right: 5%;
+  }
+
+  100% {
+    bottom: -150%;
+    right: -5%;
+  }
+}
+
+@keyframes background-top-down {
+  0% {
+    top: -15%;
+  }
+
+  100% {
+    top: -1%;
+  }
+}
+
+@keyframes background-top-up {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: -35%;
+  }
+}
+
+@keyframes background-bottom-up {
+  from {
+    bottom: -75%;
+  }
+
+  to {
+    bottom: -10%;
+  }
+}
+
+@keyframes background-bottom-down {
+  from {
+    bottom: -10%;
+  }
+
+  to {
+    bottom: -85%;
+  }
+}
+
+@keyframes start-button__container-downscale {
+  from {
+    transform: scale(2);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes game-show {
+  0% {
+    top: 11%;
+    right: -150%;
+    transform: rotate(7deg);
+  }
+
+  75% {
+    top: 15%;
+    right: 35%;
+    transform: rotate(-15deg);
+  }
+
+  100% {
+    top: 11%;
+    right: 18%;
+    transform: rotate(0);
+  }
+}

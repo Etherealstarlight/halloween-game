@@ -1,0 +1,113 @@
+@import url("./animations.css");
+@import url("./typography.css");
+
+* {
+  padding: 0px;
+  margin: 0px;
+  border: none;
+}
+
+img {
+  -webkit-user-drag: none;
+}
+
+.label {
+  font-family: "Jolly Lodger" !important;
+  font-size: 3rem;
+}
+
+.w-100 {
+  width: 100% !important;
+}
+
+.h-100 {
+  height: 100% !important;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  background: #dc8201;
+  overflow: hidden;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.app__container {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app__container > .background {
+  height: 115%;
+  width: 115%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+    at center bottom,
+    #ffae00,
+    #ff9100 35%,
+    #581c00 75%,
+    #110000 95%
+  );
+  animation: background-pyro-x 3s ease infinite,
+    background-pyro-y 5s ease-out infinite;
+  z-index: -1;
+}
+
+.audio-button__wrapper {
+  position: absolute;
+  top: 5%;
+  right: 3%;
+  width: 7%;
+  animation: fadein 1s ease;
+  z-index: 1000;
+  filter: drop-shadow(0px 0px 1px rgba(228, 110, 0, 0.7))
+    drop-shadow(15px 15px 5px rgba(70, 0, 0, 0.7));
+}
+
+.audio-button__wrapper:hover {
+  cursor: pointer;
+  transform: scale(1.125);
+}
+
+.audio-button__wrapper > .cross {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 10%;
+  width: 100%;
+  background: rgba(192, 7, 0, 0.7);
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 20px;
+  transform: rotate(35deg);
+  animation: audio-button-cross 1s ease;
+}

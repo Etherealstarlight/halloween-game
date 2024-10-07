@@ -1,0 +1,19 @@
+@keyframes stats-down {
+  from {
+    top: -35%;
+  }
+
+  to {
+    top: -1%;
+  }
+}
+
+@keyframes stats-up {
+  from {
+    top: -1%;
+  }
+
+  to {
+    top: -75%;
+  }
+}

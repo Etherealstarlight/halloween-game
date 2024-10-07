@@ -1,0 +1,78 @@
+@import url("./animations.css");
+
+.background-top {
+  position: absolute;
+  top: -1%;
+  left: 0;
+  width: 100%;
+  animation: background-top-down 1.75s ease;
+  filter: drop-shadow(30px 15px 10px rgba(70, 0, 0, 0.7));
+  z-index: 101;
+}
+
+.background-top.hide {
+  animation: background-top-up 1s ease forwards;
+}
+
+.background-bottom {
+  position: absolute;
+  bottom: -10%;
+  left: 0;
+  width: 100%;
+  animation: background-bottom-up 0.15s ease;
+  filter: drop-shadow(15px 15px 10px rgba(70, 0, 0, 0.7));
+  z-index: 100;
+}
+
+.background-bottom.hide {
+  animation: background-bottom-down 0.75s ease forwards;
+}
+
+.pumpkin {
+  position: absolute;
+  bottom: -15%;
+  right: 5%;
+  width: 31%;
+  animation: pumpkin-up 0.5s ease;
+  filter: drop-shadow(-30px 15px 5px rgba(70, 0, 0, 0.7));
+  z-index: 100;
+}
+
+.pumpkin.hide {
+  animation: pumpkin-down 0.5s ease forwards;
+}
+
+.start-button__container {
+  cursor: pointer;
+  height: 35%;
+  width: 35%;
+  position: relative;
+  padding: 16px;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  animation: start-button__container-downscale 1s ease;
+  z-index: 1000;
+}
+
+.start-button__container > .background {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.start-button__container:hover {
+  transform: scale(1.15);
+  filter: drop-shadow(5px 5px 3px rgba(70, 0, 0, 0.3));
+}
+
+.start-button__container > .hint {
+  position: absolute;
+  bottom: -100px;
+  left: 0;
+  text-align: center;
+  width: 100%;
+  font-size: 1.75rem;
+  color: rgb(182, 88, 0);
+}

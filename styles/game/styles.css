@@ -1,0 +1,138 @@
+@import url("./animations.css");
+
+.castle {
+  position: absolute;
+  bottom: -10%;
+  left: 5%;
+  width: 35%;
+  transform: rotate(-7deg);
+  animation: castle-up 0.75s ease, castle-swing 3s infinite;
+  filter: drop-shadow(30px 15px 5px rgba(70, 0, 0, 0.7));
+  z-index: 100;
+}
+
+.castle.hide {
+  animation: castle-down 0.75s ease forwards;
+}
+
+.game__stats {
+  position: absolute;
+  top: -1%;
+  left: 5%;
+  display: flex;
+  width: 7%;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 78px;
+  z-index: 1001;
+  border-radius: 16px;
+  border: 4px dashed black;
+  background: rgba(255, 123, 0, 0.15);
+  filter: drop-shadow(10px 5px 10px rgba(70, 0, 0, 1));
+  animation: stats-down 1s ease;
+}
+
+.game__stats.hide {
+  animation: stats-up 1s ease forwards;
+}
+
+.game__stats > .timer {
+  font-size: 10vw;
+  line-height: 10vw;
+}
+
+.game__stats > .score {
+  font-size: 11vw;
+}
+
+.game__wrapper {
+  position: absolute;
+  width: 45%;
+  height: 50%;
+  top: 11%;
+  right: 18%;
+  padding: 78px;
+  filter: drop-shadow(15px 30px 15px rgba(70, 0, 0, 0.7));
+  z-index: 1000;
+  border-radius: 132px;
+  outline: 4px solid rgb(0, 0, 0);
+  background: radial-gradient(
+      circle,
+      rgba(204, 123, 0, 0.351) 50%,
+      rgba(0, 0, 0, 1) 90%
+    ),
+    url("../../assets/image/p_dec_04.svg");
+  background-size: cover;
+  background-position: center center;
+  z-index: 100;
+}
+
+.game__wrapper.show {
+  animation: game-show 1.5s ease;
+}
+
+.game__wrapper.hide {
+  animation: game-hide 1s ease forwards;
+}
+
+.game__hand {
+  position: absolute;
+  width: 1000px;
+  top: -385px;
+  right: -800px;
+  z-index: -1;
+}
+
+.game__witch {
+  position: absolute;
+  width: 500px;
+  top: 35%;
+  right: -48%;
+  filter: drop-shadow(15px 30px 15px rgba(70, 0, 0, 0.7));
+}
+
+.game__witch.show {
+  animation: game-witch 1.05s linear forwards;
+}
+
+.game__container {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.character {
+  -webkit-user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  filter: drop-shadow(5px 5px 3px rgba(0, 0, 0, 0.3));
+}
+
+.character > .message {
+  font-size: 1.75rem;
+  animation: fadein 0.3s ease;
+}
+
+.character.removed {
+  animation: fade-out 0.5s ease;
+}
+
+.character.scaling.removed {
+  animation: scale-down 0.3s ease-out, fade-out 0.5s ease;
+}
+
+.character.scaling {
+  animation: scale-up 1s ease-in forwards;
+}
+
+.character.x-moving {
+  animation: x-moving 0.5s ease-out infinite;
+}
+
+.character.y-moving {
+  animation: y-moving 0.5s ease-out infinite;
+}
