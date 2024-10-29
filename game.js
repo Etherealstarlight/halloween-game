@@ -211,9 +211,10 @@ const setNewGameCharacter = () => {
   }, GAME_LEVELS[currentGameState.level]);
 
   eCharacter.onclick = () => {
+    eCharacter.onclick = null;
+    removeCharacter(true);
     changeScore(newCharacter);
     newCharacter.sound.play();
-    removeCharacter(true);
     clearTimeout(characterLive);
   };
 };
