@@ -61,9 +61,9 @@ const changeScore = (clickedCharacter) => {
       break;
   }
 
-  if (currentGameState.score > 50) currentGameState.level = "normal";
-  if (currentGameState.score > 100) currentGameState.level = "hard";
-  if (currentGameState.score > 150) currentGameState.level = "extrahard";
+  if (currentGameState.score > 100) currentGameState.level = "normal";
+  if (currentGameState.score > 300) currentGameState.level = "hard";
+  if (currentGameState.score > 500) currentGameState.level = "extrahard";
 
   eGameScore.textContent = currentGameState.score;
 };
@@ -81,11 +81,12 @@ const setETimerValueUpdateHandler = () => {
   }, 1000);
 };
 
-const createNewCharacterData = () => {
+const createNewCharacterData = (typeId = null) => {
   const result = {};
 
   result.id = new Date().getTime();
-  result.type = MODEL_TYPES[Math.round(Math.random() * (3 - 1)) + 1];
+  const type = typeId || Math.round(Math.random() * (3 - 1)) + 1;
+  result.type = MODEL_TYPES[type];
 
   switch (result.type) {
     case MODEL_TYPES[1]:
@@ -172,8 +173,8 @@ const createTimerMessageElement = () => {
   return e;
 };
 
-const setNewGameCharacter = () => {
-  const newCharacter = new GameObject(createNewCharacterData());
+const setNewGameCharacter = (typeId = null) => {
+  const newCharacter = new GameObject(createNewCharacterData(typeId));
   currentGameState.characters.push(newCharacter);
 
   const eCharacter = createNewCharacterElement(newCharacter);
@@ -216,6 +217,9 @@ const setNewGameCharacter = () => {
     changeScore(newCharacter);
     newCharacter.sound.play();
     clearTimeout(characterLive);
+
+    if (newCharacter.type === MODEL_TYPES[1] && Math.round(Math.random()))
+      setNewGameCharacter(1);
   };
 };
 
